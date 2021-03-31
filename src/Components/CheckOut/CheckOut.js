@@ -1,25 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { UserContext } from '../../App';
 import './CheckOut.css'
 
-const CheckOut = () => {
+function CheckOut() {
 
     const { id } = useParams();
-    const [book, setBook] = useState([])
+    const [book, setBook] = useState([]);
+
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
 
     useEffect(() => {
-        fetch(`http://localhost:7000/selectedBook/${id}`)
+        fetch(`https://limitless-shelf-16314.herokuapp.com/selectedBook/${id}`)
             .then(res => res.json())
             .then(data => setBook(data[0]))
     }, [])
 
-    //  const selectedBook = book.find(bk=>bk._id === id);
-    //  console.log(selectedBook);
+
+    const handlePlaceOrder = () => {
+        const placeOrder = { ...loggedInUser, ...book };
+
+        fetch('https://limitless-shelf-16314.herokuapp.com/addOrder',
+            {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(placeOrder)
+            })
+            .then(res => res.json)
+            .then(data => console.log(data))
+    }
 
 
     return (
         <div>
-            <h4 style={{color:"blue", textAlign:"center"}} >CheckOut</h4>
+            <h4 style={{ color: "blue", textAlign: "center" }} >CheckOut</h4>
             <table className="table table table-hover table-design " >
                 <thead>
                     <tr>
@@ -50,9 +67,8 @@ const CheckOut = () => {
                     </tr>
                 </tbody>
             </table>
-                <br/>
-            <button className="btn btn-primary checkOut-button " >CheckOut</button>
-
+            <br />
+            <button onClick={handlePlaceOrder} className="btn btn-primary checkOut-button" >Place Order</button>
         </div>
     );
 };

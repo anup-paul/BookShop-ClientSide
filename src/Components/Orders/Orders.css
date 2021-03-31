@@ -1,0 +1,11 @@
+.design-order
+{
+    background-color: steelblue;
+    width: 35%;
+    padding: 20px;
+    margin-left: 35%;
+    border: 2px solid rgb(43, 64, 78);
+    border-radius: 10px;
+    color: white;
+}
+/* style={{background:"lightBlue", width:"35%", padding:"20px",marginLeft:"35%"}} */

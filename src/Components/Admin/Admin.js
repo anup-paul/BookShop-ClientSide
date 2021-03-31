@@ -1,9 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
     return (
         <div>
-            <h1>this is admin page</h1>
+
+            <ul className="nav justify-content-center mt-5">
+                <li className="nav-item mx-5">
+                    <Link to="/addBook" className="nav-link active btn btn-primary" aria-current="page">Add Book</Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/manageBook" className="nav-link active btn btn-primary" aria-current="page">Manage Books</Link>
+                </li>
+            </ul>
+            
         </div>
     );
 };

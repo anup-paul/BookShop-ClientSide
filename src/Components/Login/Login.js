@@ -58,7 +58,7 @@ const Login = () => {
     const handleBlur = (event) => {
         let isFieldValid = true;
         if (event.target.name === 'email') {
-            // isFieldValid = /\$+\s+\.\s+/.test(event.target.value);
+
             isFieldValid = /\S+@\S+\.\S+/.test(event.target.value);
         }
         if (event.target.name === "password") {
@@ -77,7 +77,6 @@ const Login = () => {
 
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => {
-        //    console.log(data);
 
         if (newUser && data.email && data.password) {
             if (data.password === data.confirmPassword) {
@@ -91,8 +90,7 @@ const Login = () => {
                         newUserInfo.name = user.name;
                         setUser(newUserInfo);
                         updateUserName(user.name);
-                        // setLoggedInUser(newUserInfo);
-                        // history.replace(from);
+            
                     })
                     .catch((error) => {
                         const newUserInfo = { ...user }
