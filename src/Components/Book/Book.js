@@ -7,7 +7,13 @@ const Book = ({ book }) => {
 
     const handleClick = (id) =>
     {
-        history.push(`/checkOut/${id}`)
+        history.push(`/checkOut/${id}`);
+
+        // fetch(`http://localhost:7000/selectedBook/${id}`)
+        // .then(res => res.json())
+        // .then(data =>
+        //     console.log(data))
+
     }
 
     return (
